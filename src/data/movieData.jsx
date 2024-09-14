@@ -39,6 +39,42 @@ const movieData = [
     description: "Adventure",
     image: CardImage3,
   },
+  {
+    id: 7,
+    title: "Wolverine",
+    description: "Action",
+    image: CardImage1,
+  },
+  {
+    id: 8,
+    title: "Iron Man",
+    description: "Adventure",
+    image: CardImage2,
+  },
+  {
+    id: 9,
+    title: "Spider Man",
+    description: "Adventure",
+    image: CardImage3,
+  },
+  {
+    id: 10,
+    title: "Wolverine",
+    description: "Action",
+    image: CardImage1,
+  },
+  {
+    id: 11,
+    title: "Iron Man",
+    description: "Adventure",
+    image: CardImage2,
+  },
+  {
+    id: 12,
+    title: "Spider Man",
+    description: "Adventure",
+    image: CardImage3,
+  },
 ];
 
 export default movieData;

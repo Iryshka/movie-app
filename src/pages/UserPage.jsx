@@ -1,18 +1,17 @@
 import CarouselSwiper from "../components/CarouselSwiper.jsx";
 import user from "../assets/images/user/user.jpg";
-import notification from "../assets/images/user/notification.svg";
-import { useDispatch } from "react-redux";
+import settings from "../assets/images/user/settings.svg";
 
-import MovieCard from "../components/ui/MovieCard.jsx";
-import MovieCardContainer from "../components/MovieCardContainer.jsx";
 import ActiveSlider from "../components/ui/ActiveSlider.jsx";
-import { setAuth } from "../features/auth/authSlice.js";
+
+import SideBar from "../components/ui/SideBar.jsx";
+import { useState } from "react";
 
 function UserPage() {
-  const dispatch = useDispatch();
+  const [isSidebarVisible, setIsSidebarVisible] = useState(false);
 
-  function handleLogout() {
-    dispatch(setAuth(false));
+  function toggleSidebar() {
+    setIsSidebarVisible((prevState) => !prevState);
   }
 
   return (
@@ -28,16 +27,14 @@ function UserPage() {
             <span className="user__greetings">Good Morning</span>
           </div>
         </div>
-        <div className="user__notification">
-          <img src={notification} alt="" />
+        <div onClick={toggleSidebar} className="user__settings">
+          <img src={settings} alt="" className="user__settings-img" />
         </div>
       </header>
+      {isSidebarVisible && <SideBar />}
       <div className="user__carousel">
         <CarouselSwiper />
       </div>
-      <button onClick={handleLogout} className="user__logout">
-        Log out
-      </button>
       <ActiveSlider title="Recommendation" />
       <ActiveSlider title="Upcoming" />
     </div>

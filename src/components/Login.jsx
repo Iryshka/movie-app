@@ -16,13 +16,13 @@ function Login() {
   const storedUser = localStorage.getItem("user-id");
   const user = storedUser || nanoid();
 
-  const userId = useSelector((state) => state.userAuth.userId); // Selector for userId from Redux
+  const userId = useSelector((state) => state.userAuth.userId);
   console.log(userId);
 
   useEffect(() => {
     if (storedUser) {
       dispatch(setAuth(true));
-      navigate("/"); //
+      navigate("/");
     }
   }, [dispatch, navigate, storedUser]);
 

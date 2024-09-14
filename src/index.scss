@@ -4,21 +4,6 @@
 @import "assets/styles/variables.scss";
 @import "assets/fonts/Waltograph/stylesheet.css";
 
-.wrapper-red {
-  background-color: red;
-  height: 200px;
-  width: 100%;
-}
-
-#bulka {
-  color: pink;
-}
-
-.change-color {
-  color: red;
-  background-color: blue;
-}
-
 * {
   margin: 0;
   padding: 0;
@@ -150,6 +135,15 @@ label {
     position: absolute;
     bottom: 25px;
   }
+}
+
+.img {
+  width: 100%;
+  object-fit: cover;
+  min-height: 300px;
+  //max-width: 1450px;
+  //max-height: 500px;
+  //object-fit: cover;
 }
 
 // BUTTONS
@@ -309,9 +303,18 @@ label {
     height: 50px;
   }
 
-  &__notification {
+  &__settings {
+    z-index: 3;
     width: 30px;
     cursor: pointer;
+  }
+
+  &__settings-img {
+    transition: transform 0.7s ease-in;
+
+    &:hover {
+      transform: rotate(90deg);
+    }
   }
 
   &__img {
@@ -352,11 +355,15 @@ label {
   font-size: 14px;
   border-radius: 10px;
 
+  &__image {
+    position: relative;
+  }
+
   &__save-image {
     z-index: 2;
     position: absolute;
     top: 5px;
-    right: 25px;
+    right: 5px;
     width: 30px;
     background-color: rgba(31, 26, 26, 0.6);
     border-radius: 50%;
@@ -414,7 +421,62 @@ label {
   }
 }
 
-// MOVIE CONTAINER
+// SIDEBAR
+
+.sidebar {
+  position: absolute;
+  padding: 20px 20px 0 20px;
+  top: 0;
+  right: 0;
+  background-color: $bg-2;
+  height: 100vh;
+  width: 100%;
+  z-index: 2;
+
+  &__info {
+    display: flex;
+    align-items: center;
+    gap: 30px;
+  }
+
+  &__user-name {
+    font-size: 24px;
+  }
+
+  &__user-image {
+    width: 130px;
+    height: 130px;
+    margin: 20px 0;
+  }
+
+  &__user-img {
+    border-radius: 50%;
+  }
+
+  &__phone,
+  &__email {
+    display: flex;
+    gap: 10px;
+    align-items: center;
+  }
+
+  &__phone-img,
+  &__email-img {
+    width: 25px;
+  }
+
+  &__nav {
+    margin-top: 25px;
+  }
+
+  &__list-item {
+    margin: 10px 0;
+  }
+
+  &__logout {
+    margin-top: 35px;
+  }
+}
 
 // MOVIE CARD SHINE
 

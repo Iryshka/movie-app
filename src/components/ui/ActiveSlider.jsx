@@ -27,7 +27,7 @@ function ActiveSlider({ title }) {
         <span className="movie-card__add">View all</span>
       </div>
       <Swiper
-        spaceBetween={10}
+        spaceBetween={55}
         slidesPerView={Math.floor(width / 130)}
         freeMode={true}
         modules={[FreeMode]}
@@ -36,7 +36,7 @@ function ActiveSlider({ title }) {
         {movieData.map((movie) => (
           <SwiperSlide key={movie.id}>
             <div className="movie-card__wrapper">
-              <div className="movie-card__image">
+              <div className="hover14 movie-card__image">
                 <div className="movie-card__save-image">
                   <img
                     src={saveImage}

@@ -1,10 +1,8 @@
 import { useEffect, useState } from "react";
 import Intro from "../components/Intro.jsx";
-import { ThreeDots } from "react-loader-spinner";
 import Carousel from "../components/Carousel.jsx";
 import Spinner from "../components/ui/Spinner.jsx";
 import data from "../data/carouselData.js";
-import SignupPage from "./SignupPage.jsx";
 import UserPage from "./UserPage.jsx";
 
 function WelcomePage() {
@@ -29,13 +27,14 @@ function WelcomePage() {
 
   return (
     <>
-      {isIntroVisible ? (
-        <Intro />
-      ) : isSpinnerVisible ? (
-        <Spinner />
-      ) : (
-        <Carousel data={data.slides} />
-      )}
+      <UserPage />
+      {/*{isIntroVisible ? (*/}
+      {/*  <Intro />*/}
+      {/*) : isSpinnerVisible ? (*/}
+      {/*  <Spinner />*/}
+      {/*) : (*/}
+      {/*  <Carousel data={data.slides} />*/}
+      {/*)}*/}
     </>
   );
 }
