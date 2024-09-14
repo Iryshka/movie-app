@@ -1,0 +1,43 @@
+import { useEffect, useState } from "react";
+import Intro from "../components/Intro.jsx";
+import { ThreeDots } from "react-loader-spinner";
+import Carousel from "../components/Carousel.jsx";
+import Spinner from "../components/ui/Spinner.jsx";
+import data from "../data/carouselData.js";
+import SignupPage from "./SignupPage.jsx";
+import UserPage from "./UserPage.jsx";
+
+function WelcomePage() {
+  const [isIntroVisible, setIntroVisible] = useState(true);
+  const [isSpinnerVisible, setSpinnerVisible] = useState(false);
+
+  useEffect(() => {
+    const timer = setTimeout(() => {
+      setIntroVisible(false);
+      setSpinnerVisible(true);
+    }, 2000); // Hide Intro in 2 seconds and show spinner
+
+    const spinnerTimeout = setTimeout(() => {
+      setSpinnerVisible(false);
+    }, 3000); // Show the spinner for 1 second
+
+    return () => {
+      clearTimeout(timer);
+      clearTimeout(spinnerTimeout);
+    };
+  }, []);
+
+  return (
+    <>
+      {isIntroVisible ? (
+        <Intro />
+      ) : isSpinnerVisible ? (
+        <Spinner />
+      ) : (
+        <Carousel data={data.slides} />
+      )}
+    </>
+  );
+}
+
+export default WelcomePage;

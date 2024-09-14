@@ -1,0 +1,11 @@
+@font-face {
+    font-family: "Waltograph";
+    src: local("Waltograph"), url(./WaltographUI.woff) format("woff");
+    src: local("Waltograph"), url(./WaltographUI.woff2) format("woff2");
+    /*src: url("./WaltographUI.woff") format('woff');*/
+    /*src: url("./WaltographUI.woff2") format('woff2');*/
+    font-style: normal;
+    font-display: swap;
+}
+
+
