@@ -141,9 +141,6 @@ label {
   width: 100%;
   object-fit: cover;
   min-height: 300px;
-  //max-width: 1450px;
-  //max-height: 500px;
-  //object-fit: cover;
 }
 
 // BUTTONS
@@ -337,6 +334,7 @@ label {
     display: flex;
     justify-content: center;
     align-items: center;
+    margin-bottom: 25px;
   }
 
   &__logout {
@@ -351,6 +349,7 @@ label {
   display: flex;
   flex-direction: column;
   justify-content: center;
+  align-items: center;
   height: 310px;
   font-size: 14px;
   border-radius: 10px;
@@ -370,16 +369,18 @@ label {
     cursor: pointer;
   }
 
-  &__info {
+  &__title {
     display: flex;
-    flex-direction: row;
-    justify-content: space-between;
+    justify-content: center;
     align-items: center;
-    margin: 10px;
+    font-size: 14px;
+    color: $accent-1;
+    height: 70px;
+    margin-top: 5px;
   }
 
-  &__title {
-    color: $accent-1;
+  &__genre {
+    font-size: 12px;
   }
 
   &__add {
@@ -402,13 +403,13 @@ label {
   }
 
   &__image {
-    width: 130px;
+    width: 140px;
     height: 160px;
   }
 
   &__img {
     width: 100%;
-    height: 160px;
+    height: 170px;
     object-fit: cover;
   }
 
@@ -417,6 +418,28 @@ label {
 
     &:hover {
       border-radius: 20px;
+    }
+  }
+}
+
+// MOVIE CARD SLIDER
+
+.movie-card-slider {
+  &__info {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin: 0 10px;
+  }
+
+  &__add {
+    color: $accent-2;
+    opacity: 0.8;
+    transition: opacity 0.2s ease-in;
+    cursor: pointer;
+
+    &:hover {
+      opacity: 1;
     }
   }
 }
@@ -470,7 +493,16 @@ label {
   }
 
   &__list-item {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
     margin: 10px 0;
+    border-bottom: 1px solid transparent;
+    cursor: pointer;
+
+    &:hover {
+      border-bottom: 1px solid $accent-1;
+    }
   }
 
   &__logout {
@@ -534,4 +566,19 @@ figure:hover + span {
 .swiper-button-prev::after,
 .swiper-button-next::after {
   color: $bg-1;
+}
+
+.my-node-enter {
+  opacity: 0;
+}
+.my-node-enter-active {
+  opacity: 1;
+  transition: opacity 200ms;
+}
+.my-node-exit {
+  opacity: 1;
+}
+.my-node-exit-active {
+  opacity: 0;
+  transition: opacity 200ms;
 }

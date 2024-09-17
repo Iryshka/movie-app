@@ -1,18 +1,21 @@
 import userIcon from "../../assets/images/user/user.jpg";
 import phoneIcon from "../../assets/images/sidebar/phone.svg";
 import emailIcon from "../../assets/images/sidebar/email.svg";
+import arrowIcon from "../../assets/images/sidebar/arrow-right.svg";
 import CommonButton from "./CommonButton.jsx";
 import { useDispatch } from "react-redux";
 import { setAuth } from "../../features/auth/authSlice.js";
+import { forwardRef } from "react";
 
-function SideBar() {
+function SideBar(props, ref) {
   const dispatch = useDispatch();
 
   function handleLogout() {
-    dispatch(setAuth(false));
+    dispatch(setAuth({ isAuth: false, userId: null }));
+    localStorage.removeItem("user-id");
   }
   return (
-    <div className="sidebar">
+    <div className="sidebar" ref={ref}>
       <h2 className="sidebar__title">Profile</h2>
       <div className="sidebar__info">
         <div className="sidebar__user-image">
@@ -31,10 +34,22 @@ function SideBar() {
 
       <nav className="sidebar__nav">
         <ul className="sidebar__list">
-          <li className="sidebar__list-item">Personal Info</li>
-          <li className="sidebar__list-item">Payment Methods</li>
-          <li className="sidebar__list-item">Favorite Movies</li>
-          <li className="sidebar__list-item">Language</li>
+          <li className="sidebar__list-item">
+            <a href="">Personal Info</a>
+            <img src={arrowIcon} alt="" />
+          </li>
+          <li className="sidebar__list-item">
+            <a href="">Payment Methods</a>
+            <img src={arrowIcon} alt="" />
+          </li>
+          <li className="sidebar__list-item">
+            <a href="">Favorite Movies</a>
+            <img src={arrowIcon} alt="" />
+          </li>
+          <li className="sidebar__list-item">
+            <a href="">Language</a>
+            <img src={arrowIcon} alt="" />
+          </li>
         </ul>
       </nav>
       <CommonButton onClick={handleLogout} className="sidebar__logout">
@@ -44,4 +59,4 @@ function SideBar() {
   );
 }
 
-export default SideBar;
+export default forwardRef(SideBar);

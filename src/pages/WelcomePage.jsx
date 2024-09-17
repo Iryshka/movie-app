@@ -27,14 +27,13 @@ function WelcomePage() {
 
   return (
     <>
-      <UserPage />
-      {/*{isIntroVisible ? (*/}
-      {/*  <Intro />*/}
-      {/*) : isSpinnerVisible ? (*/}
-      {/*  <Spinner />*/}
-      {/*) : (*/}
-      {/*  <Carousel data={data.slides} />*/}
-      {/*)}*/}
+      {isIntroVisible ? (
+        <Intro />
+      ) : isSpinnerVisible ? (
+        <Spinner />
+      ) : (
+        <Carousel data={data.slides} />
+      )}
     </>
   );
 }

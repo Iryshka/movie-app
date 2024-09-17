@@ -10,9 +10,34 @@ import { FreeMode, Pagination } from "swiper/modules";
 import movieData from "../../data/movieData.jsx";
 import CommonButton from "./CommonButton.jsx";
 import { useEffect, useState } from "react";
+import MovieCard from "./MovieCard.jsx";
 
 function ActiveSlider({ title }) {
+  const [movies, setMovies] = useState([]);
   const [width, setWidth] = useState(window.innerWidth);
+
+  const url = "https://imdb-top-100-movies.p.rapidapi.com/";
+  const options = {
+    method: "GET",
+    headers: {
+      "x-rapidapi-key": "afdff19015msh64e2d070e643ec1p1b82d0jsn7f9a491597b1",
+      "x-rapidapi-host": "imdb-top-100-movies.p.rapidapi.com",
+    },
+  };
+
+  useEffect(() => {
+    async function fetchMovies() {
+      try {
+        const response = await fetch(url, options);
+        const result = await response.json();
+        setMovies(result);
+      } catch (error) {
+        console.error("Error fetching movie data:", error);
+      }
+    }
+
+    fetchMovies();
+  }, []);
 
   useEffect(() => {
     const handleResize = () => setWidth(window.innerWidth);
@@ -21,37 +46,25 @@ function ActiveSlider({ title }) {
   }, []);
 
   return (
-    <div className="movie-card">
-      <div className="movie-card__info">
-        <h3 className="movie-card__title">{title}</h3>
-        <span className="movie-card__add">View all</span>
+    <div className="movie-card-slider">
+      <div className="movie-card-slider__info">
+        <h3 className="movie-card-slider__title">{title}</h3>
+        <span className="movie-card-slider__add">View all</span>
       </div>
       <Swiper
-        spaceBetween={55}
-        slidesPerView={Math.floor(width / 130)}
+        spaceBetween={15}
+        slidesPerView={Math.floor(width / 140)}
         freeMode={true}
         modules={[FreeMode]}
         className="swiper-container"
       >
         {movieData.map((movie) => (
           <SwiperSlide key={movie.id}>
-            <div className="movie-card__wrapper">
-              <div className="hover14 movie-card__image">
-                <div className="movie-card__save-image">
-                  <img
-                    src={saveImage}
-                    alt=""
-                    className="movie-card__save-img"
-                  />
-                </div>
-                <figure>
-                  <img src={movie.image} alt="" className="movie-card__img" />
-                </figure>
-              </div>
-              <h3 className="movie-card__title">{movie.title}</h3>
-              <p className="movie-card__description">{movie.description}</p>
-              <CommonButton className="movie-card-button">Book</CommonButton>
-            </div>
+            <MovieCard
+              image={movie.image}
+              title={movie.title}
+              description={movie.description}
+            />
           </SwiperSlide>
         ))}
       </Swiper>

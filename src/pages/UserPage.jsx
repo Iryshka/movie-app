@@ -5,10 +5,12 @@ import settings from "../assets/images/user/settings.svg";
 import ActiveSlider from "../components/ui/ActiveSlider.jsx";
 
 import SideBar from "../components/ui/SideBar.jsx";
-import { useState } from "react";
+import { useState, useRef } from "react";
+import { CSSTransition } from "react-transition-group";
 
 function UserPage() {
   const [isSidebarVisible, setIsSidebarVisible] = useState(false);
+  const nodeRef = useRef(null);
 
   function toggleSidebar() {
     setIsSidebarVisible((prevState) => !prevState);
@@ -31,7 +33,15 @@ function UserPage() {
           <img src={settings} alt="" className="user__settings-img" />
         </div>
       </header>
-      {isSidebarVisible && <SideBar />}
+      <CSSTransition
+        nodeRef={nodeRef}
+        in={isSidebarVisible}
+        timeout={200}
+        classNames="my-node"
+        unmountOnExit
+      >
+        <SideBar ref={nodeRef} />
+      </CSSTransition>
       <div className="user__carousel">
         <CarouselSwiper />
       </div>

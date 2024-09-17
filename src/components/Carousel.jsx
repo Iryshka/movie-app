@@ -1,19 +1,33 @@
 import CommonButton from "./ui/CommonButton.jsx";
 
-import { useState } from "react";
+import { useEffect, useState } from "react";
+import { useNavigate } from "react-router-dom";
 import { Link } from "react-router-dom";
 
 function Carousel({ data }) {
+  const navigate = useNavigate();
   const [slide, setSlide] = useState(0);
+  const isPreviewSeen = localStorage.getItem("isPreviewSeen");
 
   function nextSlide() {
     console.log("i'm clicked");
     setSlide(slide === data.length - 1 ? 0 : slide + 1);
   }
 
+  function skipPreview() {
+    localStorage.setItem("isPreviewSeen", "true");
+    navigate("/login");
+  }
+
   function previousSlide() {
     setSlide(slide - 1);
   }
+
+  useEffect(() => {
+    if (isPreviewSeen) {
+      navigate("/login");
+    }
+  }, [isPreviewSeen]);
   return (
     <div className="carousel">
       <div className="carousel__wrapper">
@@ -57,7 +71,9 @@ function Carousel({ data }) {
       </span>
       <div className="carousel__buttons">
         <Link to="/login">
-          <CommonButton name="skip">skip</CommonButton>
+          <CommonButton onClick={skipPreview} name="skip">
+            skip
+          </CommonButton>
         </Link>
         <CommonButton onClick={nextSlide}>next</CommonButton>
       </div>
