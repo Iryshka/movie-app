@@ -4,6 +4,7 @@ import Carousel from "../components/Carousel.jsx";
 import Spinner from "../components/ui/Spinner.jsx";
 import data from "../data/carouselData.js";
 import UserPage from "./UserPage.jsx";
+import MovieSelect from "../components/ui/MovieSelect.jsx";
 
 function WelcomePage() {
   const [isIntroVisible, setIntroVisible] = useState(true);
@@ -27,13 +28,14 @@ function WelcomePage() {
 
   return (
     <>
-      {isIntroVisible ? (
-        <Intro />
-      ) : isSpinnerVisible ? (
-        <Spinner />
-      ) : (
-        <Carousel data={data.slides} />
-      )}
+      <MovieSelect />
+      {/*{isIntroVisible ? (*/}
+      {/*  <Intro />*/}
+      {/*) : isSpinnerVisible ? (*/}
+      {/*  <Spinner />*/}
+      {/*) : (*/}
+      {/*  <Carousel data={data.slides} />*/}
+      {/*)}*/}
     </>
   );
 }

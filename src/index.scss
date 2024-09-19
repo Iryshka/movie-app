@@ -510,6 +510,63 @@ label {
   }
 }
 
+// MOVIE-SELECT
+
+.movie-select {
+  width: 250px;
+  max-width: 270px;
+  color: $bg-1;
+
+  //border-top-left-radius: 10px;
+  //border-top-right-radius: 10px;
+  //border-bottom-left-radius: 10px;
+  //border-bottom-right-radius: 10px;
+
+  &__wrapper {
+    display: flex;
+    align-items: center;
+    justify-content: space-between; /* Ensures space between the text and the arrow */
+    gap: 5px;
+    padding: 10px;
+    border: 1px solid $bg-1;
+    border-radius: 10px;
+    cursor: pointer;
+    background-color: $bg-2;
+  }
+
+  &__selected {
+    flex: 1; /* Ensures the text takes the available space */
+  }
+
+  &__img-arrow {
+    width: 13px;
+    //height: auto;
+    //margin-left: 10px; /* Space between the text and the arrow */
+  }
+
+  &__img-location {
+    width: 25px;
+  }
+
+  &__list {
+    //list-style: none;
+    //padding: 0;
+    //margin: 0;
+  }
+
+  &__list-item {
+    border: 1px solid $bg-1;
+    background-color: $bg-2;
+    border-radius: 10px;
+    padding: 10px;
+    cursor: pointer;
+  }
+
+  &__list-item:hover {
+    background-color: #f0f0f0;
+  }
+}
+
 // MOVIE CARD SHINE
 
 figure {
