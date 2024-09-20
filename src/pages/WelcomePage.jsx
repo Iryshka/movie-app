@@ -4,7 +4,8 @@ import Carousel from "../components/Carousel.jsx";
 import Spinner from "../components/ui/Spinner.jsx";
 import data from "../data/carouselData.js";
 import UserPage from "./UserPage.jsx";
-import MovieSelect from "../components/ui/MovieSelect.jsx";
+
+import DateAndTimePage from "./DateAndTimePage.jsx";
 
 function WelcomePage() {
   const [isIntroVisible, setIntroVisible] = useState(true);
@@ -28,7 +29,7 @@ function WelcomePage() {
 
   return (
     <>
-      <MovieSelect />
+      <DateAndTimePage />
       {/*{isIntroVisible ? (*/}
       {/*  <Intro />*/}
       {/*) : isSpinnerVisible ? (*/}

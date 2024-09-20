@@ -2,6 +2,7 @@ import { useState } from "react";
 import arrowDown from "../../assets/images/bookingPage/arrow-down.svg";
 import locationIcon from "../../assets/images/bookingPage/location.svg";
 import movieTheatreLocationList from "../../data/movieTheatreLocationList.js";
+import { CSSTransition, TransitionGroup } from "react-transition-group";
 
 function MovieSelect() {
   const [isListVisible, setIsListVisible] = useState(false);
@@ -30,7 +31,13 @@ function MovieSelect() {
         <div className="movie-select__selected">{selectedLocation}</div>
         <img className="movie-select__img-arrow" src={arrowDown} alt="" />
       </div>
-      {isListVisible && (
+
+      <CSSTransition
+        in={isListVisible}
+        timeout={500}
+        classNames="my-node"
+        unmountOnExit
+      >
         <ul className="movie-select__list">
           {filteredList().map((movie) => (
             <li
@@ -44,7 +51,7 @@ function MovieSelect() {
             </li>
           ))}
         </ul>
-      )}
+      </CSSTransition>
     </div>
   );
 }
