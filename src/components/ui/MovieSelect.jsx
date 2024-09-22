@@ -4,7 +4,7 @@ import locationIcon from "../../assets/images/bookingPage/location.svg";
 import movieTheatreLocationList from "../../data/movieTheatreLocationList.js";
 import { CSSTransition, TransitionGroup } from "react-transition-group";
 
-function MovieSelect() {
+function MovieSelect({ onLocationSelect }) {
   const [isListVisible, setIsListVisible] = useState(false);
   const [selectedLocation, setSelectedLocation] = useState(
     "Select Your Location"
@@ -16,6 +16,7 @@ function MovieSelect() {
 
   function selectLocation(location) {
     setSelectedLocation(location);
+    onLocationSelect(location);
     setIsListVisible(false);
   }
 

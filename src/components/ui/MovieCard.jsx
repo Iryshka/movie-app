@@ -1,9 +1,9 @@
 import CommonButton from "./CommonButton.jsx";
 import saveIcon from "../../assets/images/save.svg";
 
-function MovieCard({ image, title, description }) {
+function MovieCard({ onClick, image, title, description }) {
   return (
-    <div className="hover14 movie-card">
+    <div onClick={onClick} className="shine movie-card">
       <div className="movie-card__image">
         <div className="movie-card__save-image">
           <img src={saveIcon} alt="" className="movie-card__save-img" />

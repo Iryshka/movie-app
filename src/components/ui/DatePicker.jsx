@@ -1,6 +1,6 @@
-import { default as dayjs } from "dayjs";
+import dayjs from "dayjs";
 import { useEffect, useState } from "react";
-import ScrollMenu from "react-horizontal-scroll-menu";
+import { ScrollMenu } from "react-horizontal-scrolling-menu";
 
 // type Select = number | string | undefined | null;
 
@@ -39,10 +39,10 @@ const DatePicker = () => {
   };
 
   const Menu = () =>
-    Month.map(() => {
+    Month.map((day) => {
       return (
         <MenuItem
-          day={day.format(customDaysFormat)}
+          day={day.format(customDaysFormat)} // Correctly pass `day`
           number={day.format("D")}
           key={day.format("D")}
           selected={selected}

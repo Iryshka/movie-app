@@ -9,6 +9,7 @@ import WelcomePage from "../pages/WelcomePage.jsx";
 import UserPage from "../pages/UserPage.jsx";
 import NotFoundPage from "../pages/NotFoundPage.jsx";
 import Login from "../components/Login.jsx";
+import MovieCardPage from "../pages/MovieCardPage.jsx";
 
 const router = createBrowserRouter(
   createRoutesFromElements(
@@ -16,6 +17,7 @@ const router = createBrowserRouter(
       {/*<Route index element={<WelcomePage />} />*/}
       <Route index element={<UserPage />} />
       <Route path="*" element={<NotFoundPage />} />
+      <Route path="/movie-card/:id" element={<MovieCardPage />} />
     </Route>
   )
 );

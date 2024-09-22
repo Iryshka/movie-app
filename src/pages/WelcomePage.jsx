@@ -29,14 +29,14 @@ function WelcomePage() {
 
   return (
     <>
-      <DateAndTimePage />
-      {/*{isIntroVisible ? (*/}
-      {/*  <Intro />*/}
-      {/*) : isSpinnerVisible ? (*/}
-      {/*  <Spinner />*/}
-      {/*) : (*/}
-      {/*  <Carousel data={data.slides} />*/}
-      {/*)}*/}
+      {/*<DateAndTimePage />*/}
+      {isIntroVisible ? (
+        <Intro />
+      ) : isSpinnerVisible ? (
+        <Spinner />
+      ) : (
+        <Carousel data={data.slides} />
+      )}
     </>
   );
 }
