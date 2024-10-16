@@ -17,14 +17,6 @@ function Login() {
   const user = storedUser || nanoid();
 
   const userId = useSelector((state) => state.userAuth.userId);
-  console.log(userId);
-
-  // useEffect(() => {
-  //   if (storedUser) {
-  //     dispatch(setAuth(true));
-  //     navigate("/");
-  //   }
-  // }, [dispatch, navigate, storedUser]);
 
   const handleClick = (event) => {
     event.preventDefault();

@@ -147,12 +147,10 @@ label {
 
 .button {
   width: 130px;
-  color: white;
+  color: $bg-2;
   font-weight: bold;
   text-transform: uppercase;
-  background-color: $bg-1;
-  //font-family: "Waltograph", sans-serif;
-  border: 3px solid transparent;
+  border: 3px solid $bg-2;
   border-radius: 25px;
   cursor: pointer;
   padding: 8px 25px;
@@ -521,7 +519,7 @@ label {
   &__wrapper {
     display: flex;
     align-items: center;
-    justify-content: space-between; /* Ensures space between the text and the arrow */
+    justify-content: space-between;
     gap: 5px;
     padding: 10px;
     border: 1px solid $bg-1;
@@ -531,13 +529,11 @@ label {
   }
 
   &__selected {
-    flex: 1; /* Ensures the text takes the available space */
+    flex: 1;
   }
 
   &__img-arrow {
     width: 13px;
-    //height: auto;
-    //margin-left: 10px; /* Space between the text and the arrow */
   }
 
   &__img-location {
@@ -560,34 +556,55 @@ label {
 // DATE AND TIME BOOKING
 
 .time {
-  background-color: $bg-2;
+  display: flex;
+  flex-direction: column;
   height: 100vh;
+  background-color: $bg-1;
+  padding: 20px 10px 10px 10px;
+
+  &__title {
+    font-size: 20px;
+    font-weight: bold;
+    margin-bottom: 10px;
+    align-self: center;
+  }
+
+  &__flex {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    height: 90%;
+  }
 
   &__wrapper {
     display: flex;
+    align-items: flex-end;
     color: $accent-1;
     width: 100%;
     height: 30vh;
-    padding: 10px;
     gap: 10px;
   }
 
   &__movie-select {
-    position: sticky;
-    top: 10px;
+    position: absolute;
+    top: 58px;
   }
 
   &__details {
     display: flex;
     flex-direction: column;
     gap: 5px;
+    color: $bg-2;
   }
 
   &__image {
     width: 100px;
+    height: 100%;
   }
 
   &__img {
+    height: 100%;
+    object-fit: cover;
     border-radius: 10px;
   }
 
@@ -597,8 +614,10 @@ label {
 
   &__movie-wrapper {
     display: flex;
+    align-items: flex-start;
     gap: 10px;
   }
+
   &__movie-name {
     margin: 5px 0;
   }
@@ -614,24 +633,36 @@ label {
   &__movie-hours-img {
     width: 20px;
   }
+
+  &__date-picker {
+    margin-bottom: 30px;
+  }
 }
 
 // MOVIE CARD PAGE
 
 .movie-card-page {
-  background-image: linear-gradient(
-    to bottom,
-    rgba(119, 41, 222, 0.3),
-    rgba(0, 0, 0, 0.89) 40%
-  );
+  display: flex;
+  justify-content: center;
+  align-items: center;
   width: 100%;
   height: 100vh;
-  background-position: center;
+  background-position: top;
   background-size: cover;
 
   &__img {
     width: 100%;
     height: 100vh;
+  }
+
+  &__main-info {
+    width: 90%;
+    height: 400px;
+    padding: 20px;
+    background-color: black;
+    opacity: 0.8;
+    color: $accent-1;
+    border-radius: 30px;
   }
 }
 
@@ -708,40 +739,40 @@ figure:hover + span {
   transition: opacity 200ms;
 }
 
-.format-container {
-  .format {
-    margin: 25px 0 15px 0;
-    font-size: 1.4em;
+// DATEPICKER
+
+.date-picker {
+  &-arrow {
+    width: 20px;
   }
-  .radio {
-    margin-bottom: 20px;
-    label {
-      margin: 0 25px 0 5px;
-    }
+
+  &-selected {
+    background-color: $bg-1;
+    color: $bg-2;
+    border-radius: 5px;
   }
+
+  &-active {
+    border-bottom: 3px solid red;
+  }
+}
+
+.react-horizontal-scrolling-menu--inner-wrapper {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  padding: 0 10px;
+  background-color: $bg-2;
+  color: $bg-1;
+  width: 100%;
+  margin: 0 auto;
+  border-radius: 15px;
 }
 
 .pointer {
   cursor: pointer;
 }
-
-//.button {
-//  display: flex;
-//  justify-content: center;
-//  align-items: center;
-//  background: #1d1d1d;
-//  border: 1px solid white;
-//  border-radius: 20%;
-//  padding: 10px;
-//  color: white;
-//  cursor: pointer;
-//  width: 100%;
-//  font-size: 20px;
-//
-//  &:hover {
-//    background: #525252;
-//  }
-//}
 
 .arrow-container {
   display: flex;
@@ -758,25 +789,130 @@ figure:hover + span {
 
 .menu-item {
   padding: 0 4px;
-  margin: 5px 10px;
+  margin: 5px 3px;
   user-select: none;
   cursor: pointer;
-  border: none;
+
   .day {
     margin-bottom: 5px;
   }
-  &.today {
-    & .number {
-      border-bottom: 2px solid rgb(209, 153, 0);
-    }
-  }
-}
-.menu-item-wrapper.active {
-  border-radius: 20%;
-  background-color: rgb(255, 245, 217);
 }
 
 .scroll-menu-arrow {
   padding: 10px;
   cursor: pointer;
+}
+
+.scroll-menu {
+  display: flex;
+}
+
+.scroll-menu__title {
+  font-size: 18px;
+  font-weight: 600;
+  color: $bg-2;
+}
+
+// TIMEPICKER
+
+.time-picker {
+  &__wrapper {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 60px;
+    height: 50px;
+  }
+
+  &__time {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border: 2px solid $bg-1;
+    border-radius: 10px;
+    padding: 4px;
+    width: 60px;
+    margin: 3px;
+    cursor: pointer;
+  }
+
+  &-selected {
+    background-color: $bg-1;
+    color: $bg-2;
+  }
+
+  &-disabled {
+    opacity: 0.5;
+    pointer-events: none;
+  }
+}
+
+.time__button {
+  width: 100%;
+}
+
+// SEAT BOOKING
+
+.seat-booking {
+  width: 100%;
+  height: 100vh;
+  background-color: $bg-1;
+  padding: 20px 10px 10px 10px;
+
+  &__flex-title {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0 10px;
+    margin-bottom: 20px;
+  }
+
+  &__title {
+    text-align: center;
+    font-size: 20px;
+    font-weight: bold;
+  }
+
+  &__img {
+    width: 25px;
+    height: 25px;
+    cursor: pointer;
+  }
+
+  &__flex {
+    display: flex;
+    width: 300px;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0 10px;
+    margin: 0 auto;
+  }
+
+  &__first-row {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 5px;
+  }
+
+  &__second-row {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 5px;
+  }
+
+  &-selected {
+    font-size: 14px;
+  }
+}
+
+// SEAT
+
+.seat {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  &-number {
+    font-size: 12px;
+  }
 }

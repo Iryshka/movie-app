@@ -19,29 +19,6 @@ function ActiveSlider({ title }) {
 
   const navigate = useNavigate();
 
-  // const url = "https://imdb-top-100-movies.p.rapidapi.com/";
-  // const options = {
-  //   method: "GET",
-  //   headers: {
-  //     "x-rapidapi-key": "afdff19015msh64e2d070e643ec1p1b82d0jsn7f9a491597b1",
-  //     "x-rapidapi-host": "imdb-top-100-movies.p.rapidapi.com",
-  //   },
-  // };
-  //
-  // useEffect(() => {
-  //   async function fetchMovies() {
-  //     try {
-  //       const response = await fetch(url, options);
-  //       const result = await response.json();
-  //       setMovies(result);
-  //     } catch (error) {
-  //       console.error("Error fetching movie data:", error);
-  //     }
-  //   }
-  //
-  //   fetchMovies();
-  // }, []);
-
   useEffect(() => {
     const handleResize = () => setWidth(window.innerWidth);
     window.addEventListener("resize", handleResize);
@@ -49,8 +26,7 @@ function ActiveSlider({ title }) {
   }, []);
 
   function showMovieCard(movieId) {
-    console.log("movie card is clicked");
-    navigate(`/movie-card/${movieId}`);
+    navigate(`/movie-card/${movieId}`, { state: { movieId } });
   }
 
   return (

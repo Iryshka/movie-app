@@ -9,9 +9,9 @@ function NotFoundPage() {
           <img src={ostrich} alt="" className="not-found__img" />
         </div>
         <div className="not-found__info">
-          <h3 className="not-found__title">
+          <div className="not-found__title">
             <h3 className="not-found__404">404</h3>
-          </h3>
+          </div>
           <p className="not-found__description">
             "You’ve stepped off-screen. Let’s get you back to the blockbuster!"
           </p>

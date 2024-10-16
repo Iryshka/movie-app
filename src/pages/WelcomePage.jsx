@@ -6,6 +6,7 @@ import data from "../data/carouselData.js";
 import UserPage from "./UserPage.jsx";
 
 import DateAndTimePage from "./DateAndTimePage.jsx";
+import SeatBooking from "./SeatBooking.jsx";
 
 function WelcomePage() {
   const [isIntroVisible, setIntroVisible] = useState(true);
@@ -29,14 +30,16 @@ function WelcomePage() {
 
   return (
     <>
-      {/*<DateAndTimePage />*/}
-      {isIntroVisible ? (
-        <Intro />
-      ) : isSpinnerVisible ? (
-        <Spinner />
-      ) : (
-        <Carousel data={data.slides} />
-      )}
+      {/*<SeatBooking />*/}
+
+      <DateAndTimePage />
+      {/*{isIntroVisible ? (*/}
+      {/*  <Intro />*/}
+      {/*) : isSpinnerVisible ? (*/}
+      {/*  <Spinner />*/}
+      {/*) : (*/}
+      {/*  <Carousel data={data.slides} />*/}
+      {/*)}*/}
     </>
   );
 }

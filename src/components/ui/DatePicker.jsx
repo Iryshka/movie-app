@@ -1,36 +1,49 @@
 import dayjs from "dayjs";
+import isSameOrAfter from "dayjs/plugin/isSameOrAfter";
 import { useEffect, useState } from "react";
 import { ScrollMenu } from "react-horizontal-scrolling-menu";
+import { useDispatch, useSelector } from "react-redux";
+import { setBooking } from "../../features/booking/bookingSlice.js";
+import leftArrow from "../../assets/images/datePicker/left-arrow.svg";
+import rightArrow from "../../assets/images/datePicker/right-arrow.svg";
 
-// type Select = number | string | undefined | null;
+dayjs.extend(isSameOrAfter);
 
 const DatePicker = () => {
-  const [Month, setMonth] = useState([]);
+  const dispatch = useDispatch();
+  const date = useSelector((state) => state.userBooking.bookingDate);
+  const [month, setMonth] = useState([]);
+  const [weekStart, setWeekStart] = useState(
+    dayjs().startOf("week").toString()
+  );
   const [selected, setSelected] = useState();
   const [customDaysFormat, setCustomDaysFormat] = useState("ddd");
   const currentDay = dayjs().format("D");
 
-  const getCurrentWeekDays = () => {
-    const weekStart = dayjs().startOf("week");
-
+  function getCurrentWeekDays() {
     const days = [];
     for (let i = 0; i <= 6; i++) {
       days.push(dayjs(weekStart).add(i, "days"));
     }
 
     return days;
-  };
+  }
 
   useEffect(() => {
     setMonth(getCurrentWeekDays());
   }, []);
 
-  const MenuItem = ({ day, number, selected, key }) => {
+  useEffect(() => {
+    setMonth(getCurrentWeekDays());
+  }, [weekStart]);
+  const MenuItem = ({ day, number, onClick, isSelected }) => {
+    const isToday = number === currentDay;
     return (
       <div
-        className={`menu-item dayItem ${selected ? "active" : ""}
-        ${currentDay === number ? "today" : null}`}
-        key={key}
+        className={`menu-item dayItem ${
+          isSelected ? "date-picker-selected" : ""
+        } ${isToday ? "date-picker-active" : ""}`}
+        onClick={onClick}
       >
         <h5 className="day">{day}</h5>
         <span className="number">{number}</span>
@@ -38,94 +51,69 @@ const DatePicker = () => {
     );
   };
 
-  const Menu = () =>
-    Month.map((day) => {
-      return (
-        <MenuItem
-          day={day.format(customDaysFormat)} // Correctly pass `day`
-          number={day.format("D")}
-          key={day.format("D")}
-          selected={selected}
-        />
-      );
-    });
-
-  const Arrow = ({ text, className }) => {
-    return (
-      <div className="arrow-container">
-        <div className={className}>{text}</div>
-      </div>
+  function ArrowLeft() {
+    const isAtCurrentWeek = dayjs(weekStart).isSame(
+      dayjs().startOf("week"),
+      "week"
     );
-  };
-  const ArrowLeft = Arrow({ text: "<", className: "button" });
-  const ArrowRight = Arrow({ text: ">", className: "button" });
 
-  const onSelect = () => {
-    if (key === selected) {
-      setSelected(0);
-    } else {
-      setSelected(key);
-    }
-  };
+    return (
+      <button
+        disabled={isAtCurrentWeek}
+        onClick={() =>
+          setWeekStart(
+            dayjs(weekStart).startOf("week").subtract(1, "week").toString()
+          )
+        }
+      >
+        <img className="date-picker-arrow" src={leftArrow} alt="Previous" />
+      </button>
+    );
+  }
 
-  const menu = Menu(selected);
+  function ArrowRight() {
+    const maxFutureWeek = dayjs().startOf("week").add(3, "week"); // 3 weeks from the current week
+    const isAtMaxFutureWeek = dayjs(weekStart).isSameOrAfter(
+      maxFutureWeek,
+      "week"
+    );
 
-  const handleRadioChange = () => {
-    const option = e.currentTarget.value;
+    return (
+      <button
+        disabled={isAtMaxFutureWeek} // Disable based on your future navigation limit
+        onClick={() =>
+          setWeekStart(
+            dayjs(weekStart).startOf("week").add(1, "week").toString()
+          )
+        }
+      >
+        <img className="date-picker-arrow" src={rightArrow} alt="Next" />
+      </button>
+    );
+  }
 
-    switch (option) {
-      case "Su-Sa":
-        setCustomDaysFormat("dd");
-        break;
-      case "Sun-Sat":
-        setCustomDaysFormat("ddd");
-        break;
-      case "Sunday-Saturday":
-        setCustomDaysFormat("dddd");
-        break;
-      default:
-        setCustomDaysFormat("ddd");
-        break;
-    }
-  };
+  function pickDate(dayNumber) {
+    dispatch(setBooking({ bookingDate: dayNumber }));
+    setSelected(dayNumber);
+  }
 
   return (
-    <div className="format-container">
-      <h4 className="format"> Days format </h4>
-      <div className="radio">
-        <input
-          type="radio"
-          name="customDay"
-          value="Su-Sa"
-          onChange={(e) => handleRadioChange(e)}
-        />
-        <label>Su-Sa</label>
-        <input
-          type="radio"
-          name="customDay"
-          value="Sun-Sat"
-          defaultChecked
-          onChange={(e) => handleRadioChange(e)}
-        />
-        <label>Sun-Sat</label>
-        <input
-          type="radio"
-          name="customDay"
-          value="Sunday-Saturday"
-          onChange={(e) => handleRadioChange(e)}
-        />
-        <label>Sunday-Saturday</label>
+    <ScrollMenu LeftArrow={ArrowLeft} RightArrow={ArrowRight}>
+      <div className="scroll-menu">
+        {month.map((day) => {
+          const dayNumber = day.format("D");
+          return (
+            <MenuItem
+              onClick={() => pickDate(dayNumber)}
+              day={day.format(customDaysFormat)}
+              number={dayNumber}
+              key={dayNumber}
+              isSelected={selected === dayNumber}
+            />
+          );
+        })}
       </div>
-
-      <ScrollMenu
-        data={menu}
-        arrowLeft={ArrowLeft}
-        arrowRight={ArrowRight}
-        selected={selected}
-        onSelect={onSelect}
-        scrollToSelected={true}
-      />
-    </div>
+    </ScrollMenu>
   );
 };
 
