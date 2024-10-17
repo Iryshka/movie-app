@@ -637,6 +637,13 @@ label {
   &__date-picker {
     margin-bottom: 30px;
   }
+
+  &__button {
+    &:hover {
+      background-color: $bg-2;
+      color: $bg-1;
+    }
+  }
 }
 
 // MOVIE CARD PAGE
@@ -854,6 +861,9 @@ figure:hover + span {
 // SEAT BOOKING
 
 .seat-booking {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-evenly;
   width: 100%;
   height: 100vh;
   background-color: $bg-1;
@@ -884,7 +894,6 @@ figure:hover + span {
     width: 300px;
     justify-content: space-between;
     align-items: center;
-    padding: 0 10px;
     margin: 0 auto;
   }
 
@@ -901,7 +910,21 @@ figure:hover + span {
   }
 
   &-selected {
-    font-size: 14px;
+    margin-top: 15px;
+    font-size: 16px;
+  }
+
+  &-span {
+    font-weight: bold;
+  }
+
+  &__button {
+    width: 100%;
+    &:hover {
+      background-color: $bg-2;
+
+      color: $bg-1;
+    }
   }
 }
 
@@ -912,7 +935,22 @@ figure:hover + span {
   flex-direction: column;
   justify-content: center;
   align-items: center;
+  z-index: 2;
   &-number {
     font-size: 12px;
   }
+}
+
+.screen {
+  position: sticky;
+  height: 50px;
+}
+
+.screen-title {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  color: $accent-1;
+  text-transform: uppercase;
 }

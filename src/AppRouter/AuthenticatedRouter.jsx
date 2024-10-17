@@ -10,7 +10,7 @@ import UserPage from "../pages/UserPage.jsx";
 import NotFoundPage from "../pages/NotFoundPage.jsx";
 import Login from "../components/Login.jsx";
 import MovieCardPage from "../pages/MovieCardPage.jsx";
-import SeatBooking from "../pages/SeatBooking.jsx";
+import SeatBookingPage from "../pages/SeatBookingPage.jsx";
 
 const router = createBrowserRouter(
   createRoutesFromElements(
@@ -19,7 +19,7 @@ const router = createBrowserRouter(
       <Route index element={<UserPage />} />
       <Route path="*" element={<NotFoundPage />} />
       <Route path="/movie-card/:id" element={<MovieCardPage />} />
-      <Route path="/seatbooking" element={<SeatBooking />} />
+      <Route path="/seatbooking" element={<SeatBookingPage />} />
     </Route>
   )
 );

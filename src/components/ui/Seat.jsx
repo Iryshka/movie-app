@@ -1,14 +1,19 @@
 import { useState } from "react";
 
-function Seat({ className, seatNumber, bookSeat }) {
+function Seat({ className, seatNumber, bookSeat, seatsBooked }) {
   const [seatColor, setSeatColor] = useState("#1c191b");
 
   function handleSeatClick() {
-    // Toggle seat color between two states
-    setSeatColor((prevColor) =>
-      prevColor === "#1c191b" ? "#d3433a" : "#1c191b"
-    );
-    // Call bookSeat from parent
+    // Allow seat color change only if fewer than 6 seats are booked
+    if (seatsBooked.length < 6 || seatColor === "#d3433a") {
+      setSeatColor((prevColor) =>
+        prevColor === "#1c191b" ? "#d3433a" : "#1c191b"
+      );
+
+      bookSeat(seatNumber);
+    } else {
+      console.log("Cannot book more than 6 seats");
+    }
     bookSeat(seatNumber);
   }
 

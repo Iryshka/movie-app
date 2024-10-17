@@ -72,7 +72,7 @@ const DatePicker = () => {
   }
 
   function ArrowRight() {
-    const maxFutureWeek = dayjs().startOf("week").add(3, "week"); // 3 weeks from the current week
+    const maxFutureWeek = dayjs().startOf("week").add(3, "week");
     const isAtMaxFutureWeek = dayjs(weekStart).isSameOrAfter(
       maxFutureWeek,
       "week"
@@ -80,7 +80,7 @@ const DatePicker = () => {
 
     return (
       <button
-        disabled={isAtMaxFutureWeek} // Disable based on your future navigation limit
+        disabled={isAtMaxFutureWeek}
         onClick={() =>
           setWeekStart(
             dayjs(weekStart).startOf("week").add(1, "week").toString()

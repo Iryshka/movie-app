@@ -9,7 +9,7 @@ import dayjs from "dayjs";
 
 function TimePicker({ ticketType }) {
   const dispatch = useDispatch();
-  const time = useSelector((state) => state.bookingTime);
+  const time = useSelector((state) => state.userBooking.bookingTime);
   const [selectedTime, setSelectedTime] = useState(null);
   const [startIndex, setStartIndex] = useState(0); // To manage the index of visible time slots
 

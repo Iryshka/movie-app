@@ -9,7 +9,7 @@ import Login from "../components/Login.jsx";
 import WelcomePage from "../pages/WelcomePage.jsx";
 import NotFoundPage from "../pages/NotFoundPage.jsx";
 import UserPage from "../pages/UserPage.jsx";
-import SeatBooking from "../pages/SeatBooking.jsx";
+import SeatBookingPage from "../pages/SeatBookingPage.jsx";
 const router = createBrowserRouter(
   createRoutesFromElements(
     <Route path="/">
@@ -17,7 +17,7 @@ const router = createBrowserRouter(
       <Route path="welcome" element={<WelcomePage />} />
       <Route path="login" element={<Login />} />
       <Route path="*" element={<NotFoundPage />} />
-      <Route path="/seatbooking" element={<SeatBooking />} />
+      <Route path="/seatbooking" element={<SeatBookingPage />} />
     </Route>
   )
 );

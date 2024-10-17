@@ -7,7 +7,7 @@ const bookingSlice = createSlice({
     location: { id: null, name: null },
     bookingDate: null,
     bookingTime: null,
-    seats: [],
+    bookedSeats: [],
   },
   reducers: {
     setBooking: (state, action) => {
