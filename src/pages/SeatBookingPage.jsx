@@ -32,12 +32,11 @@ function SeatBookingPage({ className }) {
   }
 
   useEffect(() => {
-    // Calculate total price based on the number of booked seats
     const totalBookedSeats = seats.length;
     if (totalBookedSeats <= 6) {
       setPrice(totalBookedSeats * seatPrice);
     } else {
-      setPrice(6 * seatPrice); // If somehow the state goes over 6, set price to max for 6 seats
+      setPrice(6 * seatPrice);
     }
   }, [seats]);
 
@@ -67,8 +66,8 @@ function SeatBookingPage({ className }) {
       </div>
 
       <div className="screen">
+        <p className="screen-title">screen</p>
         <div className="gradient">
-          <p className="screen-title">screen</p>
           <svg
             focusable="false"
             xmlns="http://www.w3.org/2000/svg"
@@ -110,7 +109,7 @@ function SeatBookingPage({ className }) {
                 key={`${rowLetter}${seatIndex}`}
                 className="seat-booking__img"
                 seatNumber={generateSeatNumber(rowLetter, seatIndex)}
-                seatsBooked={seats} // Pass booked seats
+                seatsBooked={seats}
               />
             ))
           )}
@@ -127,7 +126,7 @@ function SeatBookingPage({ className }) {
                   rowLetter,
                   seatIndex + seatsPerRow
                 )}
-                seatsBooked={seats} // Pass booked seats
+                seatsBooked={seats}
               />
             ))
           )}
