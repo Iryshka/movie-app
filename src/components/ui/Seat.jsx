@@ -10,8 +10,6 @@ function Seat({ className, seatNumber, bookSeat, seatsBooked }) {
       );
 
       bookSeat(seatNumber);
-    } else {
-      console.log("Cannot book more than 6 seats");
     }
     bookSeat(seatNumber);
   }

@@ -12,6 +12,7 @@ function SeatBookingPage({ className }) {
   const seatsPerRow = 4;
   const navigate = useNavigate();
   const [price, setPrice] = useState(0);
+  const [showLimitMessage, setShowLimitMessage] = useState(false);
   const seatPrice = 10;
 
   function generateSeatNumber(rowLetter, seatIndex) {
@@ -25,7 +26,11 @@ function SeatBookingPage({ className }) {
     if (isSeatBooked) {
       updatedSeats = seats.filter((seat) => seat !== seatNumber);
     } else {
-      updatedSeats = [...seats, seatNumber];
+      if (seats.length < 6) {
+        updatedSeats = [...seats, seatNumber];
+      } else {
+        return;
+      }
     }
 
     dispatch(setBooking({ bookedSeats: updatedSeats }));
@@ -35,10 +40,16 @@ function SeatBookingPage({ className }) {
     const totalBookedSeats = seats.length;
     if (totalBookedSeats <= 6) {
       setPrice(totalBookedSeats * seatPrice);
-    } else {
-      setPrice(6 * seatPrice);
     }
   }, [seats]);
+
+  useEffect(() => {
+    if (seats.length >= 6) {
+      setShowLimitMessage(true);
+    } else {
+      setShowLimitMessage(false);
+    }
+  }, [seats.length]);
 
   function goBack() {
     navigate(-1);
@@ -46,7 +57,7 @@ function SeatBookingPage({ className }) {
 
   function displayBookedSeats(seats) {
     if (seats.length > 6) {
-      return `${seats.slice(0, 6).join(", ")}`;
+      return `${seats.slice(0, 6).join(", ")} `;
     }
     return seats.join(", ");
   }
@@ -82,12 +93,12 @@ function SeatBookingPage({ className }) {
               gradientTransform="translate(0 -398)"
               gradientUnits="userSpaceOnUse"
             >
-              <stop offset="0" stop-color="#fff" stop-opacity=".97"></stop>
-              <stop offset=".04" stop-color="#fff" stop-opacity=".91"></stop>
-              <stop offset=".25" stop-color="#fff" stop-opacity=".59"></stop>
-              <stop offset=".44" stop-color="#fff" stop-opacity=".34"></stop>
-              <stop offset=".6" stop-color="#fff" stop-opacity=".15"></stop>
-              <stop offset=".79" stop-color="#fff" stop-opacity="0"></stop>
+              <stop offset="0" stopColor="#fff" stopOpacity=".97"></stop>
+              <stop offset=".04" stopColor="#fff" stopOpacity=".91"></stop>
+              <stop offset=".25" stopColor="#fff" stopOpacity=".59"></stop>
+              <stop offset=".44" stopColor="#fff" stopOpacity=".34"></stop>
+              <stop offset=".6" stopColor="#fff" stopOpacity=".15"></stop>
+              <stop offset=".79" stopColor="#fff" stopOpacity="0"></stop>
             </radialGradient>
             <path
               className=" fill-[url(#gradient)]"
@@ -137,6 +148,11 @@ function SeatBookingPage({ className }) {
         Your seats:{" "}
         <span className="seat-booking-span">{displayBookedSeats(seats)}</span>
       </div>
+      {showLimitMessage && (
+        <div className="seat-booking__error-message">
+          You can book only 6 seats.
+        </div>
+      )}
 
       <div className="seat-booking-selected">
         Total price: <span className="seat-booking-span">${price}</span>

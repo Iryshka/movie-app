@@ -926,6 +926,14 @@ figure:hover + span {
       color: $bg-1;
     }
   }
+
+  &__error-message {
+    position: absolute;
+    top: 500px;
+    color: darkred;
+    font-size: 15px;
+    margin-top: 10px;
+  }
 }
 
 // SEAT
