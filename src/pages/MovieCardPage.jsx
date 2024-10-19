@@ -1,4 +1,4 @@
-import { useLocation } from "react-router-dom";
+import { useLocation, Link } from "react-router-dom";
 import movieData from "../data/movieData.jsx";
 import CommonButton from "../components/ui/CommonButton.jsx";
 
@@ -14,6 +14,10 @@ function MovieCardPage() {
 
   console.log(movieId);
 
+  function contractSynopsis(synopsis) {
+    return `${synopsis.slice(0, 120)}`;
+  }
+
   return (
     <div
       className="movie-card-page"
@@ -26,8 +30,8 @@ function MovieCardPage() {
       url(${movie.image})`,
       }}
     >
-      <main className="movie-card-page__main-info">
-        <h3 className="movie-card-page__title">{movie.title}</h3>
+      <article className="movie-card-page__main-info">
+        <h3 className="movie-card-page__main-info-title">{movie.title}</h3>
         <div className="movie-card-page__details">
           <p>{movie.duration}</p>
           <div className="movie-card-page__details-flex">
@@ -44,7 +48,22 @@ function MovieCardPage() {
         <p className="movie-card-page__genre">{movie.genre}</p>
         {/*<p className="movie-card-page__genre__synopsis">{movie.synopsis}</p>*/}
         <CommonButton className="movie-card-page__button">Trailer</CommonButton>
-      </main>
+      </article>
+      <article className="movie-card-page__synopsis">
+        <div className="movie-card-page__about">
+          <h4 className="movie-card-page__synopsis-title">Synopsis</h4>
+          <p className="movie-card-page__description">
+            {contractSynopsis(movie.synopsis)}
+            <Link to="#" className="movie-card-page__synopsis-link">
+              ...more
+            </Link>
+          </p>
+        </div>
+        <div className="movie-card-page__cast"></div>
+        <CommonButton className="movie-card-page__synopsis-button">
+          BOOK NOW
+        </CommonButton>
+      </article>
     </div>
   );
 }
