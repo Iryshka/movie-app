@@ -19,19 +19,31 @@ function MovieCardPage() {
       className="movie-card-page"
       style={{
         backgroundImage: `
-      linear-gradient(to bottom, rgba(119, 41, 222, 0.3), rgba(0, 0, 0, 0.89) 40%), 
+      linear-gradient(to bottom, 
+      rgba(119, 41, 222, 0.3), 
+      rgba(0, 0, 0, 0.89) 50%, 
+      rgba(0, 0, 0, 1) 60%), 
       url(${movie.image})`,
       }}
     >
       <main className="movie-card-page__main-info">
         <h3 className="movie-card-page__title">{movie.title}</h3>
         <div className="movie-card-page__details">
-          <span>{movie.duration}</span>
-          <span>{movie.director}</span>
+          <p>{movie.duration}</p>
+          <div className="movie-card-page__details-flex">
+            <p className="movie-card-page__details__paragraph">
+              {movie.director}
+            </p>
+            <img
+              className="movie-card-page__details__img"
+              src={movie.directorImage}
+              alt="director image"
+            ></img>
+          </div>
         </div>
         <p className="movie-card-page__genre">{movie.genre}</p>
-        <p className="movie-card-page__genre__synopsis">{movie.synopsis}</p>
-        <CommonButton>Trailer</CommonButton>
+        {/*<p className="movie-card-page__genre__synopsis">{movie.synopsis}</p>*/}
+        <CommonButton className="movie-card-page__button">Trailer</CommonButton>
       </main>
     </div>
   );

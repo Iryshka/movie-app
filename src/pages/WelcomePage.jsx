@@ -30,16 +30,14 @@ function WelcomePage() {
 
   return (
     <>
-      {/*<SeatBookingPage />*/}
-
-      <DateAndTimePage />
-      {/*{isIntroVisible ? (*/}
-      {/*  <Intro />*/}
-      {/*) : isSpinnerVisible ? (*/}
-      {/*  <Spinner />*/}
-      {/*) : (*/}
-      {/*  <Carousel data={data.slides} />*/}
-      {/*)}*/}
+      {/*<DateAndTimePage />*/}
+      {isIntroVisible ? (
+        <Intro />
+      ) : isSpinnerVisible ? (
+        <Spinner />
+      ) : (
+        <Carousel data={data.slides} />
+      )}
     </>
   );
 }
