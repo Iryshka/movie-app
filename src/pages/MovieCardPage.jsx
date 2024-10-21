@@ -1,6 +1,9 @@
 import { useLocation, Link } from "react-router-dom";
 import movieData from "../data/movieData.jsx";
 import CommonButton from "../components/ui/CommonButton.jsx";
+import WatchButton from "../components/ui/WatchButton.jsx";
+import clockIcon from "../assets/images/movieCardPage/clock.svg";
+import genreIcon from "../assets/images/movieCardPage/genre.svg";
 
 function MovieCardPage() {
   const location = useLocation();
@@ -33,7 +36,14 @@ function MovieCardPage() {
       <article className="movie-card-page__main-info">
         <h3 className="movie-card-page__main-info-title">{movie.title}</h3>
         <div className="movie-card-page__details">
-          <p>{movie.duration}</p>
+          <div className="movie-card-page__details-flex">
+            <img
+              className="movie-card-page__clock__img"
+              src={clockIcon}
+              alt=""
+            />
+            <p>{movie.duration}</p>
+          </div>
           <div className="movie-card-page__details-flex">
             <p className="movie-card-page__details__paragraph">
               {movie.director}
@@ -45,9 +55,12 @@ function MovieCardPage() {
             ></img>
           </div>
         </div>
-        <p className="movie-card-page__genre">{movie.genre}</p>
-        {/*<p className="movie-card-page__genre__synopsis">{movie.synopsis}</p>*/}
-        <CommonButton className="movie-card-page__button">Trailer</CommonButton>
+        <div className="movie-card-page__details-flex">
+          <img className="movie-card-page__genre__img" src={genreIcon} alt="" />
+          <p className="movie-card-page__genre">{movie.genre}</p>
+          {/*<p className="movie-card-page__genre__synopsis">{movie.synopsis}</p>*/}
+        </div>
+        <WatchButton>WATCH</WatchButton>
       </article>
       <article className="movie-card-page__synopsis">
         <div className="movie-card-page__about">
